@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            /*
+            * a,b,c로 삼각형을 만들 수 있으면 yes, 아니면 no출력
+            */
+            function solution(a, b, c){
+                answer = '';
+                arr = [];
+                arr.push(a);
+                arr.push(b);
+                arr.push(c);
+                arr.sort(function(a, b){
+                    return a-b
+                })
+                console.log(arr)
+                if(arr[2]>arr[0] + arr[1]){
+                    answer = 'no'
+                }else{
+                    answer = 'yes'
+                }
+                return answer;
+            }
+
+            console.log(solution(13, 33, 17));
+        </script>
+    </body>
+</html>
