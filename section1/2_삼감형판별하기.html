@@ -10,19 +10,27 @@
             */
             function solution(a, b, c){
                 answer = '';
-                arr = [];
-                arr.push(a);
-                arr.push(b);
-                arr.push(c);
-                arr.sort(function(a, b){
-                    return a-b
-                })
-                console.log(arr)
-                if(arr[2]>arr[0] + arr[1]){
-                    answer = 'no'
-                }else{
-                    answer = 'yes'
-                }
+                // arr = [];
+                // arr.push(a);
+                // arr.push(b);
+                // arr.push(c);
+                // arr.sort(function(a, b){
+                //     return a-b
+                // })
+                // console.log(arr)
+                // if(arr[2]>arr[0] + arr[1]){
+                //     answer = 'no'
+                // }else{
+                //     answer = 'yes'
+                // }
+                // 다른 풀이
+                let answer = "yes", max;
+                let sum = a+b+c;
+                if(a>b) max=a;
+                else max=b;
+                if(c>max)max=c;
+
+                if(max>=(sum-max))answer="no"
                 return answer;
             }
 
