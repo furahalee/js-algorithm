@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(arr){         
+              //방법 1
+              // let answer, min=Number.MAX_SAFE_INTEGER;
+              // for(var i=0; i<arr.length; i++){
+              //   if(arr[i]<min) min= arr[i]
+              // }
+              // answer = min
+
+              //방법2
+              //let answer = Math.min(...arr);
+
+              //방법3
+              let answer = Math.min.apply(null, arr);
+              return answer
+            }
+
+            let arr=[5, 7, 2, 3, 2, 9, 11];
+            console.log(solution(arr));
+        </script>
+    </body>
+</html>
