@@ -11,3 +11,6 @@
 ###### 그래프와 탐색(DFS, BFS:넓이우선탐색)
 ###### Dynamic programming(동적계획법 )
 
+주로 [Baekjoon](https://www.acmicpc.net/)에 나오는 문제 풀이
+
+schedule : 
