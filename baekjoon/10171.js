@@ -1,5 +1,7 @@
-//1단계 - 입출력과 사칙연산
-//10171 고양이 출력하기
+/* 1단계 - 입출력과 사칙연산 : 고양이
+ * https://www.acmicpc.net/problem/10171
+ * Complete
+ */
 
 let row1 = `\\    /\\`;
 let row2 = ` )  ( ')`;

@@ -1,5 +1,7 @@
-//1단계 - 입출력과 사칙연산
-//1000 a + b
+/* 1단계 - 입출력과 사칙연산 : A + B
+ * https://www.acmicpc.net/problem/1000
+ * Complete
+ */
 
 var fs = require("fs");
 var input = fs.readFileSync("/dev/stdin").toString().split(" ");
