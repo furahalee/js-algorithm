@@ -114,6 +114,54 @@ function getElement() {
 }
 // --- list 순회하기 ---
 
+
+// 영화 대여 kiosk
+function createArr(films) {
+  let arr = read(films).split("\n");
+  for (const item of arr) {
+    item = item.trim();
+  }
+  return arr;
+}
+
+function displayList(list) {
+  for (list.front(); list.currPos() < list.length(); list.next()) {
+    if (list.getElement() instanceof Customer) {
+      console.log(
+        list.getElement()["name"] + ", " + list.getElement()["movie"]
+      );
+    } else {
+      console.log(list.getElement());
+    }
+  }
+}
+
+// Customer 생성자 함수
+function Customer(name, movie) {
+  this.name = name;
+  this.movie = movie;
+}
+
+// 영화 대출
+function checkOut(name, movie, filmList, customerList) {
+  if (movieList.contains(movie)) {
+    let c = new Customer(name, movie);
+    customerList.append(c);
+    filmList.remove(movie);
+  } else {
+    console.log(movie + " is not available");
+  }
+}
+
+// const movies = createArr(films);
+// const movieList = new List();
+// const customers = new List();
+// for (let i = 0; i < movies.length; ++i) {
+//   movieList.append(movies[i]);
+// }
+// console.log("Available movies: \n");
+// displayList(customers);
+
 /*
 const names = new List();
 names.append("제니");
