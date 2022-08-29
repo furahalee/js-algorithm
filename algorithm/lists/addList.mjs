@@ -1,3 +1,5 @@
+import fs from "fs";
+
 function List() {
   this.listSize = 0;
   this.pos = 0;
@@ -114,12 +116,11 @@ function getElement() {
 }
 // --- list 순회하기 ---
 
-
 // 영화 대여 kiosk
-function createArr(films) {
-  let arr = read(films).split("\n");
-  for (const item of arr) {
-    item = item.trim();
+function createArr(filmsURL) {
+  const arr = fs.readFileSync(filmsURL).toString().split("\n");
+  for (let i = 0; i < arr.length; i++) {
+    arr[i] = arr[i].trim();
   }
   return arr;
 }
@@ -136,7 +137,7 @@ function displayList(list) {
   }
 }
 
-// Customer 생성자 함수
+// 렌탈 고객 생성자 함수
 function Customer(name, movie) {
   this.name = name;
   this.movie = movie;
@@ -148,44 +149,36 @@ function checkOut(name, movie, filmList, customerList) {
     let c = new Customer(name, movie);
     customerList.append(c);
     filmList.remove(movie);
+    console.log(customerList);
   } else {
     console.log(movie + " is not available");
   }
 }
-
-// const movies = createArr(films);
-// const movieList = new List();
-// const customers = new List();
-// for (let i = 0; i < movies.length; ++i) {
-//   movieList.append(movies[i]);
-// }
-// console.log("Available movies: \n");
-// displayList(customers);
-
-/*
-const names = new List();
-names.append("제니");
-names.append("로제");
-names.append("리사");
-names.append("지수");
-names.append("올리버");
-names.append("체리");
-names.front();
-names.prev();
-names.prev();
-names.prev();
-names.prev();
-names.prev();
-names.prev();
-names.prev();
-console.log(names.currPos());
-console.log(names.getElement());
-
-for (names.front(); names.currPos() < names.length(); names.next()) {
-  console.log(names.getElement());
+// 상대경로. vscode extension인 code runner로 실행할경우 프로젝트를 최상위 폴더인 js-algo에서 실행할 것.
+const movies = createArr("algorithm/lists/films.txt");
+const movieList = new List();
+const customers = new List();
+for (let i = 0; i < movies.length; ++i) {
+  movieList.append(movies[i]);
 }
+//displayList(movieList);
 
-for (names.end(); names.currPos() > 0; names.prev()) {
-  console.log(names.getElement());
-}
-*/
+// import readline from "readline";
+
+// let name = "";
+// let movie = "";
+
+// var r = readline.createInterface({
+//   input: process.stdin,
+//   output: process.stdout,
+// });
+
+// r.question("\n name ?", function (answer) {
+//   name = answer;
+//   console.log("Hi: ", answer);
+//   r.close();
+// });
+
+checkout(name, movie, movieList, customers);
+console.log("\nCustomer Rentals: \n ");
+displayList(customers);
