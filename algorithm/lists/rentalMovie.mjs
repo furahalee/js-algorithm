@@ -1,4 +1,5 @@
 import fs from "fs";
+import readline from "readline";
 import List from "./List.mjs";
 
 // 영화 대여 kiosk
@@ -34,13 +35,15 @@ function checkOut(name, movie, filmList, customerList) {
     let c = new Customer(name, movie);
     customerList.append(c);
     filmList.remove(movie);
-    console.log(customerList);
+    //console.log(customerList);
   } else {
     console.log(movie + " is not available");
   }
 }
 // 상대경로. vscode extension인 code runner로 실행할경우 프로젝트를 최상위 폴더인 js-algo에서 실행할 것.
-const movies = createArr("algorithm/lists/films.txt");
+// code runner로 실행할 경우 텍스트 경로설정 : "algorithm/lists/films.txt"
+// node로 실행할 경우 : "films.txt"
+const movies = createArr("films.txt");
 const movieList = new List();
 const customers = new List();
 for (let i = 0; i < movies.length; ++i) {
@@ -48,28 +51,36 @@ for (let i = 0; i < movies.length; ++i) {
 }
 //displayList(movieList);
 
-import readline from "readline";
+let name = "";
+let movie = "";
 
-// let name = "";
-// let movie = "";
+let input = [];
+
+console.log("이름과 영화 순서대로 입력");
 
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
 });
-rl.on("line", (line) => {
-  console.log(line);
-  rl.close();
-});
-rl.on("close", () => {
-  console.log("입력이 끝났습니다");
-});
-// r.question("\n name ?", function (answer) {
-//   name = answer;
-//   console.log("Hi: ", answer);
-//   r.close();
-// });
 
-//checkout(name, movie, movieList, customers);
-//console.log("\nCustomer Rentals: \n ");
-//displayList(customers);
+rl.setPrompt("> ");
+
+rl.on("line", (line) => {
+  if (line === "exit") {
+    rl.close();
+  }
+  rl.prompt();
+  console.log("입력값:", line);
+  input.push(line);
+});
+
+rl.on("close", () => {
+  name = input[0];
+  movie = input[1];
+  checkOut(name, movie, movieList, customers);
+  console.log("\nCustomer Rentals: \n ");
+  displayList(customers);
+  console.log("now available Moive: \n");
+  displayList(movieList);
+  process.exit();
+});
